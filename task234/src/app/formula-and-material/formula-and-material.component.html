@@ -1,0 +1,127 @@
+<mat-tab-group >
+  <mat-tab label="配方">
+
+      <mat-form-field>
+        <input matInput  (keyup)="applyFilterFormula($event.target.value)" placeholder="請輸入欲查詢配方">
+
+      </mat-form-field>
+      <button mat-raised-button (click)="createDialog()">新增配方</button>
+      <div class="mat-elevation-z8">
+        <mat-table [dataSource]="emailsDataFormula" matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="formula">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 配方 </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.formulaName }} </mat-cell>
+          </ng-container>
+<!-- {{row.materialId}} -->
+          <!-- Progress Column -->
+
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="content">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 配方內容 </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              <ul>
+                  <li *ngFor="let data of row.contents">
+                    {{data.material}}: {{data.amount}}
+                  </li>
+              </ul>
+          </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="cost">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 成本 </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.cost }}
+               <!-- {{row.progress}}% -->
+             </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="price">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 售價 </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{ row.price }}
+               <!-- {{row.progress}}% -->
+             </mat-cell>
+          </ng-container>
+<!-- {{row.total / row.counts}} -->
+          <!-- Color Column -->
+          <ng-container matColumnDef="management">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>管理</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="example-button-row">
+              <button mat-raised-button (click)="updateDialog(row.formulaId)">修改</button>
+              <button mat-raised-button (click)="confirmBox(row.formulaId)">移除</button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="['formula', 'content', 'cost', 'price', 'management']"></mat-header-row>
+          <mat-row *matRowDef="let emailRow; columns: ['formula', 'content', 'cost', 'price', 'management']"></mat-row>
+        </mat-table>
+
+        <mat-paginator #formulapaginator
+               [length]="totalCount"
+               [pageIndex]="0"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 10, 15]">></mat-paginator>
+      </div>
+
+   </mat-tab>
+
+<!-- <mat-tab label="原料" [@listStagger]="users$"> -->
+  <mat-tab label="原料">
+
+      <mat-form-field>
+        <input matInput  (keyup)="applyFilterMaterial($event.target.value)" placeholder="請輸入欲查詢原料">
+      </mat-form-field>
+      <button mat-raised-button (click)="createMaterialDiag()">新增原料</button>
+      <div class="mat-elevation-z8">
+        <mat-table [dataSource]="emailsDataMaterial" matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="materialName">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 原料 </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.materialName }} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="cost">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 成本 </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+              {{row.cost}}
+             </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="management">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>管理</mat-header-cell>
+            <mat-cell *matCellDef="let row" class="example-button-row">
+              <button mat-raised-button (click)="updateMaterialDiag((row.materialId))">修改</button>
+              <button mat-raised-button (click)="confirmDeleteMaterial((row.materialId))">移除</button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="['materialName', 'cost', 'management']"></mat-header-row>
+          <mat-row *matRowDef="let emailRow; columns: ['materialName', 'cost', 'management']"></mat-row>
+        </mat-table>
+
+        <mat-paginator #materialpaginator
+               [length]="totalCount"
+               [pageIndex]="0"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 10, 15]">></mat-paginator>
+      </div>
+
+  </mat-tab>
+</mat-tab-group>
+
+
+<!--
+<h1>Users</h1>
+
+<ul [@listStagger]="users$">
+  <li *ngFor="let user of users$">
+    {{ user.id }}
+    <ul>
+      <li>
+        {{ user.name }}
+      </li>
+    </ul>
+<button (click)="deleteUser(user.id)">delete</button>
+  </li> -->

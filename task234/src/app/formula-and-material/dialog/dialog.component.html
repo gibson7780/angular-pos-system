@@ -1,0 +1,39 @@
+<h2 mat-dialog-title>
+  新增配方
+</h2>
+<mat-dialog-content class="">
+  <mat-form-field>
+    <input matInput class="" placeholder="配方名稱"  [(ngModel)]="formulaName" value="{{formulaName}}"/>
+  </mat-form-field>
+
+
+</mat-dialog-content>
+<div class="" *ngFor="let arr of arrs; let idn=index">
+  <mat-dialog-content class="" >
+    <mat-form-field>
+      <mat-select placeholder="原料" value={{arr.material}} (selectionChange)="addMaterial($event, idn)" >
+        <mat-option *ngFor="let data of materialOptions" [value]="data">{{data}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+      <mat-form-field>
+      <input matInput class="amount" placeholder="用量" value="" (keyup)="doCost($event.target.value, idn)" />
+    </mat-form-field>
+
+      <button mat-button color="primary" color="black" (click)="delete(idn)"><span class="bold">X</span></button>
+  </mat-dialog-content>
+
+</div>
+<mat-dialog-content>
+  <button mat-raised-button  (click)="add()"> +新增原料</button>
+</mat-dialog-content>
+<mat-dialog-content class="">
+  <mat-form-field>
+    <input class="price" matInput placeholder="售價" [(ngModel)]="price" value="{{price}}"/>
+  </mat-form-field>
+  <p class="fsize20">成本: {{cost}}</p>
+
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button (click)="sendDB()" >儲存</button>
+  <button mat-raised-button mat-dialog-close >取消</button>
+</mat-dialog-actions>

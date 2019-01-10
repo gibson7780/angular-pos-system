@@ -1,0 +1,45 @@
+a {
+  width:100%;
+  display:block;
+  text-decoration:none;
+  font-family: '微軟正黑體';
+  color: #333;
+}
+mat-tab-group {
+  /* margin:0 50px; */
+}
+mat-tab {
+}
+.mat-raised-button {
+  /* margin-left: 100px; */
+}
+.mat-column-counts {
+  /* max-width: 100px; */
+}
+.mat-form-field-appearance-legacy .mat-form-field-underline {
+    width: 25%;
+}
+#count {
+  width: 100px;
+}
+mat-button-toggle-group {
+  margin:10px;
+}
+mat-form-field {
+    width: 50%;
+}
+/* mat-form-field input {
+  width: 30%;
+} */
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  /* width: 100%; */
+}
+
+td, th {
+  width: 25%;
+}

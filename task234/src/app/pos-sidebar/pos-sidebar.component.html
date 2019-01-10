@@ -1,0 +1,36 @@
+<!-- pos路徑 -->
+<nav>
+  <ul>
+    <li>
+      <a routerLink="" [class.activated]="currentUrl == '/' || currentUrl == '/Purchase/PurchaseLog'">
+      <i class="material-icons">supervised_user_circle</i>進貨</a>
+    </li>
+    <li>
+      <a routerLink="Shipment" [class.activated]="currentUrl == '/Shipment'">
+      <i class="material-icons">message</i>出貨</a>
+    </li>
+    <li>
+      <a routerLink="Statistics" [class.activated]="currentUrl == '/Statistics'">
+      <i class="material-icons">supervised_user_circle</i>統計</a>
+    </li>
+    <li>
+      <a routerLink="FormulaAndMaterial" [class.activated]="currentUrl == '/FormulaAndMaterial'">
+      <i class="material-icons">message</i>配方 &<br>原料</a>
+    </li>
+  </ul>
+</nav>
+
+
+<!-- d3路徑 -->
+<!-- <nav>
+  <ul>
+    <li>
+      <a routerLink="" [class.activated]="currentUrl == '/'">
+      <i class="material-icons">supervised_user_circle</i></a>
+    </li>
+    <li>
+      <a routerLink="D3SineWave" [class.activated]="currentUrl == '/D3SineWave'">
+      <i class="material-icons">message</i></a>
+    </li>
+  </ul>
+</nav> -->

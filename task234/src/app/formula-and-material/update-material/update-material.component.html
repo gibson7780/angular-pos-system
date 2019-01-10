@@ -1,0 +1,20 @@
+<h2 mat-dialog-title>
+  修改原料
+</h2>
+<div class="" *ngFor="let arr of arrs; let idn=index">
+  <mat-dialog-content class="" >
+    <mat-form-field>
+      <input matInput class="mateiralName" placeholder="原料名稱" [(ngModel)]="materialName" value="{{materialName}}" (keyup)="saveMaterialName($event.target.value, idn)" disabled/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput class="materialCost" placeholder="單位成本" [(ngModel)]="cost" value="{{cost}}" (keyup)="saveMaterialCost($event.target.value, idn)"/>
+    </mat-form-field>
+      
+  </mat-dialog-content>
+
+</div>
+
+<mat-dialog-actions>
+  <button mat-raised-button (click)="sendDB()" >儲存</button>
+  <button mat-raised-button mat-dialog-close >取消</button>
+</mat-dialog-actions>

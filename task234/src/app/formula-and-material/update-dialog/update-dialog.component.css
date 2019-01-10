@@ -1,0 +1,33 @@
+* {
+  font-family: '微軟正黑體';
+}
+h2 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+}
+mat-form-field {
+  margin-right: 10px;
+}
+.mat-dialog-actions {
+  justify-content: center;
+}
+button {
+  margin-bottom: 10px;
+}
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+.fsize16 {
+  font-size: 16px;
+}
+.fsize20 {
+  font-size: 20px;
+}
+.bold {
+  font-weight: 700;
+}

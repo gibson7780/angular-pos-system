@@ -1,0 +1,38 @@
+<mat-tab-group >
+  <mat-tab label="趨勢">
+    <p class="txtStyle">※各月份配方賣出數量</p>
+    <div class="marginleft20">
+      <mat-form-field (window:resize)="onResize($event)">
+        <mat-select placeholder="配方" value="" (selectionChange)="showFormulaChart($event.value)">
+          <mat-option *ngFor="let data of formulaOptions" [value]="data">{{data}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <app-line-chart [data]="lineData" [size]="width" [temp]="temp" ></app-line-chart>
+  </mat-tab>
+
+  <mat-tab label="消費統計">
+    <p class="txtStyle">※使用者購買總金額</p>
+    <div class="marginleft20">
+      <mat-form-field (window:resize)="onResize($event)">
+        <mat-select placeholder="使用者" value=""  (selectionChange)="showUserChart($event.value)">
+          <mat-option *ngFor="let data of usersOptions" [value]="data">{{data}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </div>
+    <!-- [data]="pieData" -->
+    <app-pie-chart  [data]="pieData" [pie]="pieDisplay"></app-pie-chart>
+  </mat-tab>
+  <mat-tab label="熱門配方">
+    <p class="txtStyle">※配方利潤 = 配方售價 - 配方成本。</p>
+    <app-bar-chart [data]="barData" [bar]="barDisplay"></app-bar-chart>
+  </mat-tab>
+  <mat-tab label="賺錢配方">
+
+  </mat-tab>
+  <mat-tab label="購買配方">
+
+  </mat-tab>
+</mat-tab-group>

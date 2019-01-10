@@ -1,0 +1,106 @@
+<!-- <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+  <mat-button-toggle value="purchase" >
+  <a routerLink="" >
+    進貨</a>
+  </mat-button-toggle>
+  <mat-button-toggle value="purchaseLog" >
+    <a routerLink="Purchase/PurchaseLog" >
+      進貨紀錄</a>
+  </mat-button-toggle>
+</mat-button-toggle-group> -->
+<mat-tab-group >
+  <mat-tab label="進貨">
+
+      <mat-form-field>
+        <input matInput  (keyup)="applyFilters($event.target.value)" placeholder="請輸入欲查詢原料">
+      </mat-form-field>
+
+      <div class="mat-elevation-z8">
+        <mat-table [dataSource]="emailsDataSource" matSort>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="materialId">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 原料 </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{ row.materialName }} </mat-cell>
+          </ng-container>
+<!-- {{row.materialId}} -->
+          <!-- Progress Column -->
+
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="onePrice">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 單價 </mat-header-cell>
+            <mat-cell *matCellDef="let row">{{row.cost}}</mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="date">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 進貨日期 </mat-header-cell>
+            <mat-cell *matCellDef="let row;let idn=index">
+
+              <mat-form-field>
+                <input type="text" name="dateLog" id="{{row.materialName+idn}}" matInput placeholder="進貨日期" [matDatepicker]="dateLogPicker"/>
+                <mat-datepicker-toggle [for]="dateLogPicker" matSuffix ></mat-datepicker-toggle>
+                <mat-datepicker #dateLogPicker ></mat-datepicker>
+              </mat-form-field>
+            </mat-cell>
+          </ng-container>
+          <ng-container matColumnDef="counts">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> 購買數量 </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                  <mat-form-field class="example-full-width">
+                    <input #myInput matInput id="{{row.materialName}}" type="number"  placeholder="輸入數量" value="" oninput="javascript:this.value=this.value.replace(/[^\d]/g,'')">
+                  </mat-form-field>
+
+               <!-- {{row.progress}}% -->
+             </mat-cell>
+          </ng-container>
+<!-- {{row.total / row.counts}} -->
+          <!-- Color Column -->
+          <ng-container matColumnDef="management">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>管理</mat-header-cell>
+            <mat-cell *matCellDef="let row;let idn=index" class="example-button-row">
+              <button mat-raised-button (click)="createPurchase(row, idn)">進貨</button>
+            </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="['materialId', 'onePrice', 'date', 'counts', 'management']"></mat-header-row>
+          <mat-row *matRowDef="let emailRow; columns: ['materialId', 'onePrice', 'date', 'counts', 'management']"></mat-row>
+        </mat-table>
+
+        <mat-paginator #paginator
+               [length]="totalCount"
+               [pageIndex]="0"
+               [pageSize]="5"
+               [pageSizeOptions]="[5, 10, 15]">></mat-paginator>
+      </div>
+
+   </mat-tab>
+
+
+  <mat-tab label="進貨紀錄" [@listStagger]="purchases$">
+    <mat-form-field>
+      <input type="text" name="dateLog" id="dateLog" matInput placeholder="查詢該日期之後的紀錄" [matDatepicker]="dateLogPicker" (dateChange)="dateChange($event.value._i.year, $event.value._i.month + 1, $event.value._i.date)"/>
+      <mat-datepicker-toggle [for]="dateLogPicker" matSuffix ></mat-datepicker-toggle>
+      <mat-datepicker #dateLogPicker ></mat-datepicker>
+    </mat-form-field>
+
+    <mat-list  *ngFor="let user of purchases$">
+      <mat-list-item>{{user.purchaseDate}} 使用者{{user.userName}}進了原料 {{user.materialName}} 共 {{user.counts}}個單位， 單價為 {{user.total / user.counts}}元，共{{user.total}}元。</mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-list>
+  </mat-tab>
+</mat-tab-group>
+
+
+<!--
+<h1>Users</h1>
+
+<ul [@listStagger]="users$">
+  <li *ngFor="let user of users$">
+    {{ user.id }}
+    <ul>
+      <li>
+        {{ user.name }}
+      </li>
+    </ul>
+<button (click)="deleteUser(user.id)">delete</button>
+  </li> -->

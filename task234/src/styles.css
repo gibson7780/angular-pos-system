@@ -1,0 +1,41 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url('https://unpkg.com/bootstrap@3.3.7/dist/css/bootstrap.min.css');
+
+/* svg {
+    width: 500px;
+    height:150px;
+} */
+
+body {
+  margin: 0;
+  background: #f2f2f2;
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+}
+
+#container {
+  display: block;
+  float: left;
+  width: 70px;
+  /* grid-template-columns: 70px auto; */
+  height: 100%;
+}
+#content {
+  float: left;
+}
+ #container ul {
+   padding: 0;
+  list-style-type: none;
+}
+ ul li {
+     list-style-type: none;
+  /* margin-top: 20px; */
+  /* font-weight: bold; */
+  /* border-radius: 8px; */
+  /* background-color: #ccc; */
+
+}
+ ul li a{
+   /* padding: 20px ; */
+ }

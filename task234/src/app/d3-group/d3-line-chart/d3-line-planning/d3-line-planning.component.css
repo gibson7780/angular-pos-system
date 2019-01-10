@@ -1,0 +1,225 @@
+.chart{
+	padding: 30px;
+}
+.demo-ripple-container {
+  height: 150px;
+  width: 200px;
+  position: relative;
+  transition: all 200ms linear;
+  border: 1px solid black;
+}
+
+.example-form {
+  /* min-width: 300px;
+  max-width: 500px; */
+  width: 49%;
+  float: left;
+   box-sizing: border-box;
+  height: 500px;
+min-width: 400px;
+  /* display: inline-block;
+	vertical-align: top; */
+
+  /* margin: 10px; */
+  /* padding-top: 15px; */
+  /* padding-left: 20px; */
+	  /* padding: 10px; */
+    border-radius: 10px;
+		text-align: center;
+
+    border:1px solid black;
+}
+
+.example-full-width {
+  width: 70%;
+  display: block;
+    min-width: 300px;
+    /* min-height: 400px; */
+
+}
+
+mat-grid-tile {
+
+
+  /* min-width: 300px; */
+  /* min-height: 400px; */
+}
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.outstyle {
+  margin:20px auto;
+}
+    #result{
+      border-bottom: 2px solid black;
+    }
+    li{
+      list-style-type:none;
+      margin-bottom:15px;
+    }
+    li span{
+      margin-right:25px;
+    }
+    .relative{
+      position: relative;
+    }
+    /* .overflow{
+      top:40px;
+      position: absolute;
+      width: 300px;
+      overflow: hidden;
+      z-index: 100;
+    } */
+    p{
+      /* position: absolute; */
+      color: red;
+      /* top: -27px; */
+    }
+    td{
+
+        border: 0px solid transparent !important;
+     }
+
+    /* path {
+	stroke: DodgerBlue;
+	stroke-width: 1;
+	fill: none;
+}
+.axis {
+	font-size: 11px;
+	fill: gray;
+}
+.x.axis line {
+  stroke: lightgrey;
+}
+.x.axis .minor {
+  stroke-opacity: .5;
+}
+.x.axis path {
+  stroke: #fafafa;
+}
+.y.axis line, .y.axis path {
+  fill: none;
+  stroke: lightgrey;
+} */
+svg {
+  /* font: 10px sans-serif;
+	max-width: 250px;
+	max-height: 250px; */
+	/* min-width: 240px; */
+	/* min-height: 240px; */
+
+}
+.svgDiv {
+min-width: 240px;
+min-height: 240px;
+
+}
+.y.axis path {
+  display: none;
+}
+
+.y.axis line {
+  stroke: #fff;
+  stroke-opacity: .2;
+  shape-rendering: crispEdges;
+}
+
+.y.axis .zero line {
+  stroke: #000;
+  stroke-opacity: 1;
+}
+
+.title {
+  font: 300 78px Helvetica Neue;
+  fill: #666;
+}
+
+.birthyear,
+.age {
+  text-anchor: middle;
+}
+
+.birthyear {
+  fill: #fff;
+}
+
+rect {
+  fill-opacity: .6;
+  fill: #e377c2;
+}
+
+rect:first-child {
+  fill: #1f77b4;
+}
+
+
+.label {
+  font: 300 10pt 'Helvetica Neue', sans-serif;
+  stroke: #000;
+  stroke-width: 1px;
+}
+
+div.label {
+
+}
+input.slider {
+  width: 75%;
+  margin: auto;
+  display: block;
+}
+input.number {
+  text-align: center;
+  margin-left: 2px;
+}
+.donut {
+  margin: auto;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+}
+.chartContainer {
+  padding: 20px;
+  display: inline-block;
+  margin: auto;
+  width: 230;
+}
+.header {
+  font: 300 14pt 'Futura', sans-serif;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.sub-header {
+  font: 100 8pt 'Futura', sans-serif;
+}
+.label-value {
+  /*display: inline;*/
+  font: 300 10pt 'Helvetica Neue', sans-serif;
+  position: relative;
+  margin: auto;
+  display: flex;
+  justify-content: center; /* align horizontal */
+  align-items: center; /* align vertical */
+    /*float: none;*/
+}
+
+.shadow {
+  stroke: #fff;
+  stroke-width: 1.75px;
+  opacity: 0.9;
+  font: 300 10pt 'Helvetica Neue', sans-serif;
+}
+
+.incomingBars {
+  padding-top: 20px;
+  margin: auto;
+  width: 600px;
+  display: inline-block;
+}
