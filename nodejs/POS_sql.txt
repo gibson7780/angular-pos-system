@@ -1,0 +1,121 @@
+﻿# 合併版 73行-121行
+
+# user
+CREATE SEQUENCE user_id_seq;
+CREATE TABLE users (user_id smallint NOT NULL DEFAULT nextval('user_id_seq'), user_name text, PRIMARY KEY (user_id));
+ALTER SEQUENCE user_id_seq OWNED BY users.user_id;
+INSERT into users (user_name) VALUES ('Jone');
+INSERT into users (user_name) VALUES ('Jane');
+INSERT into users (user_name) VALUES ('Nick');
+INSERT into users (user_name) VALUES ('Egg');
+
+
+# materials
+CREATE SEQUENCE material_id_seq;
+CREATE TABLE materials (material_id smallint NOT NULL DEFAULT nextval('material_id_seq'), material_name text, cost integer, PRIMARY KEY (material_id));
+ALTER SEQUENCE material_id_seq OWNED BY materials.material_id;
+INSERT into materials (material_name, cost) VALUES ('milk', 100);
+INSERT into materials (material_name, cost) VALUES ('suger', 200);
+INSERT into materials (material_name, cost) VALUES ('cheese', 250);
+INSERT into materials (material_name, cost) VALUES ('flour', 50);
+
+
+# formulas
+CREATE SEQUENCE formula_id_seq;
+CREATE TABLE formulas (formula_id smallint NOT NULL DEFAULT nextval('formula_id_seq'), formula_name text, cost integer, price integer, PRIMARY KEY (formula_id));
+ALTER SEQUENCE formula_id_seq OWNED BY formulas.formula_id;
+INSERT into formulas (formula_name, cost, price) VALUES ('cake', 200, 300);
+INSERT into formulas (formula_name, cost, price) VALUES ('blackTea', 60, 100);
+INSERT into formulas (formula_name, cost, price) VALUES ('applePie', 150, 250);
+INSERT into formulas (formula_name, cost, price) VALUES ('donut', 50, 80);
+
+
+# formula and material(formula content)
+
+CREATE SEQUENCE content_id_seq;
+CREATE TABLE contents (content_id smallint NOT NULL DEFAULT nextval('content_id_seq'), formula_id integer, material_id integer, amount float, PRIMARY KEY (formula_id, material_id), FOREIGN KEY (formula_id) REFERENCES formulas(formula_id), FOREIGN KEY (material_id) REFERENCES materials(material_id));
+ALTER SEQUENCE content_id_seq OWNED BY contents.content_id;
+INSERT into contents (formula_id, material_id, amount) VALUES (1, 1, 0.5);
+INSERT into contents (formula_id, material_id, amount) VALUES (1, 2, 0.4);
+INSERT into contents (formula_id, material_id, amount) VALUES (2, 2, 0.2);
+INSERT into contents (formula_id, material_id, amount) VALUES (2, 3, 0.6);
+INSERT into contents (formula_id, material_id, amount) VALUES (3, 4, 0.3);
+INSERT into contents (formula_id, material_id, amount) VALUES (3, 2, 0.4);
+INSERT into contents (formula_id, material_id, amount) VALUES (4, 4, 0.5);
+INSERT into contents (formula_id, material_id, amount) VALUES (4, 1, 0.2);
+
+
+# shipment
+CREATE SEQUENCE shipment_id_seq;
+CREATE TABLE shipments (shipment_id smallint NOT NULL DEFAULT nextval('shipment_id_seq'), user_id integer, formula_id integer, counts integer, total integer, shipment_date timestamp, PRIMARY KEY (shipment_id), FOREIGN KEY (user_id) REFERENCES users(user_id), FOREIGN KEY (formula_id) REFERENCES formulas(formula_id));
+ALTER SEQUENCE shipment_id_seq OWNED BY shipments.shipment_id;
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (1, 1, 2, 600, '2018-12-18 00:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (1, 2, 2, 200, '2018-12-17 05:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (2, 4, 6, 300, '2018-12-16 15:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (2, 3, 2, 500, '2018-12-15 12:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (3, 3, 4, 1000, '2018-12-10 10:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (3, 3, 3, 750, '2018-09-10 10:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (3, 3, 3, 750, '2018-11-10 10:12:11');
+
+
+# purchase table
+CREATE SEQUENCE purchase_id_seq;
+CREATE TABLE purchases (purchase_id smallint NOT NULL DEFAULT nextval('purchase_id_seq'), user_id integer, material_id integer, counts integer, total integer, purchase_date timestamp, PRIMARY KEY (purchase_id), FOREIGN KEY (material_id) REFERENCES materials(material_id), FOREIGN KEY (user_id) REFERENCES users(user_id));
+ALTER SEQUENCE purchase_id_seq OWNED BY purchases.purchase_id;
+INSERT into purchases (user_id, material_id, counts, total, purchase_date) VALUES (1, 1, 2, 200, '2018-12-20 00:12:11');
+INSERT into purchases (user_id, material_id, counts, total, purchase_date) VALUES (2, 2, 5, 1000, '2018-12-18 15:12:11');
+INSERT into purchases (user_id, material_id, counts, total, purchase_date) VALUES (3, 4, 1, 50, '2018-12-17 10:12:11');
+INSERT into purchases (user_id, material_id, counts, total, purchase_date) VALUES (4, 3, 3, 750, '2018-12-16 01:12:11');
+
+
+
+
+CREATE SEQUENCE user_id_seq;
+CREATE TABLE users (user_id smallint NOT NULL DEFAULT nextval('user_id_seq'), user_name text, PRIMARY KEY (user_id));
+ALTER SEQUENCE user_id_seq OWNED BY users.user_id;
+INSERT into users (user_name) VALUES ('Jone');
+INSERT into users (user_name) VALUES ('Jane');
+INSERT into users (user_name) VALUES ('Nick');
+INSERT into users (user_name) VALUES ('Egg');
+CREATE SEQUENCE material_id_seq;
+CREATE TABLE materials (material_id smallint NOT NULL DEFAULT nextval('material_id_seq'), material_name text, cost integer, PRIMARY KEY (material_id));
+ALTER SEQUENCE material_id_seq OWNED BY materials.material_id;
+INSERT into materials (material_name, cost) VALUES ('milk', 100);
+INSERT into materials (material_name, cost) VALUES ('suger', 200);
+INSERT into materials (material_name, cost) VALUES ('cheese', 250);
+INSERT into materials (material_name, cost) VALUES ('flour', 50);
+CREATE SEQUENCE formula_id_seq;
+CREATE TABLE formulas (formula_id smallint NOT NULL DEFAULT nextval('formula_id_seq'), formula_name text, cost integer, price integer, PRIMARY KEY (formula_id));
+ALTER SEQUENCE formula_id_seq OWNED BY formulas.formula_id;
+INSERT into formulas (formula_name, cost, price) VALUES ('cake', 200, 300);
+INSERT into formulas (formula_name, cost, price) VALUES ('blackTea', 60, 100);
+INSERT into formulas (formula_name, cost, price) VALUES ('applePie', 150, 250);
+INSERT into formulas (formula_name, cost, price) VALUES ('donut', 50, 80);
+CREATE SEQUENCE content_id_seq;
+CREATE TABLE contents (content_id smallint NOT NULL DEFAULT nextval('content_id_seq'), formula_id integer, material_id integer, amount float, PRIMARY KEY (formula_id, material_id), FOREIGN KEY (formula_id) REFERENCES formulas(formula_id), FOREIGN KEY (material_id) REFERENCES materials(material_id));
+ALTER SEQUENCE content_id_seq OWNED BY contents.content_id;
+INSERT into contents (formula_id, material_id, amount) VALUES (1, 1, 0.5);
+INSERT into contents (formula_id, material_id, amount) VALUES (1, 2, 0.4);
+INSERT into contents (formula_id, material_id, amount) VALUES (2, 2, 0.2);
+INSERT into contents (formula_id, material_id, amount) VALUES (2, 3, 0.6);
+INSERT into contents (formula_id, material_id, amount) VALUES (3, 4, 0.3);
+INSERT into contents (formula_id, material_id, amount) VALUES (3, 2, 0.4);
+INSERT into contents (formula_id, material_id, amount) VALUES (4, 4, 0.5);
+INSERT into contents (formula_id, material_id, amount) VALUES (4, 1, 0.2);
+CREATE SEQUENCE shipment_id_seq;
+CREATE TABLE shipments (shipment_id smallint NOT NULL DEFAULT nextval('shipment_id_seq'), user_id integer, formula_id integer, counts integer, total integer, shipment_date timestamp, PRIMARY KEY (shipment_id), FOREIGN KEY (user_id) REFERENCES users(user_id), FOREIGN KEY (formula_id) REFERENCES formulas(formula_id));
+ALTER SEQUENCE shipment_id_seq OWNED BY shipments.shipment_id;
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (1, 1, 2, 600, '2018-12-18 00:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (1, 2, 2, 200, '2018-12-17 05:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (2, 4, 6, 300, '2018-12-16 15:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (2, 3, 2, 500, '2018-12-15 12:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (3, 3, 4, 1000, '2018-12-10 10:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (3, 3, 3, 750, '2018-09-10 10:12:11');
+INSERT into shipments (user_id, formula_id, counts, total, shipment_date) VALUES (3, 3, 3, 750, '2018-11-10 10:12:11');
+CREATE SEQUENCE purchase_id_seq;
+CREATE TABLE purchases (purchase_id smallint NOT NULL DEFAULT nextval('purchase_id_seq'), user_id integer, material_id integer, counts integer, total integer, purchase_date timestamp, PRIMARY KEY (purchase_id), FOREIGN KEY (material_id) REFERENCES materials(material_id), FOREIGN KEY (user_id) REFERENCES users(user_id));
+ALTER SEQUENCE purchase_id_seq OWNED BY purchases.purchase_id;
+INSERT into purchases (user_id, material_id, counts, total, purchase_date) VALUES (1, 1, 2, 200, '2018-12-20 00:12:11');
+INSERT into purchases (user_id, material_id, counts, total, purchase_date) VALUES (2, 2, 5, 1000, '2018-12-18 15:12:11');
+INSERT into purchases (user_id, material_id, counts, total, purchase_date) VALUES (3, 4, 1, 50, '2018-12-17 10:12:11');
+INSERT into purchases (user_id, material_id, counts, total, purchase_date) VALUES (4, 3, 3, 750, '2018-12-16 01:12:11');
