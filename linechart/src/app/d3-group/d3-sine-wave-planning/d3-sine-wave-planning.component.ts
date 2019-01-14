@@ -38,6 +38,7 @@ export class D3SineWavePlanningComponent implements OnInit {
 
           const width = this.size.width;
           const height = this.size.height;
+          console.log(this.size);
           const svg = d3.select('svg').attr('width', width).attr('height', height);
           // console.log(height);
           // const n = 10;

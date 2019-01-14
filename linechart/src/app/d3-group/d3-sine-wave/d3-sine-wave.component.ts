@@ -58,10 +58,10 @@ onstructor() { }
     // console.log(this.size.width)
     this.size.width = event.target.innerWidth;
     this.autoWidth = event.target.innerWidth;
-    console.log(this.size.width)
-    if (this.size.width < 400) {
-      this.size.width = 400 ;
-    }
+    // console.log(this.size.width);
+    // if (this.size.width < 400) {
+    //   this.size.width = 400 ;
+    // }
     // const svg = d3.select('svg')
                   // .style('width', this.size.width -100 );
     // console.log(svg.style('width'));
