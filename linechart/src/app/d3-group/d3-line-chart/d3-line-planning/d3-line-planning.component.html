@@ -1,0 +1,22 @@
+
+          <div class=" outstyle">
+ 		   			<span id="result" ></span>
+            <!-- <input type="text" name="total" value="" [(ngModel)]="total"> -->
+ 		   			<span>.</span>
+ 		   	  </div>
+          <div class="svgDiv" (window:resize)="rePlanning()">
+            <svg id="example1"></svg>
+          </div>
+<mat-form-field>
+  <mat-select placeholder="XLeftMax" (selectionChange)="getXLeftValue($event.value); onChangeValue()">
+    <mat-option>None</mat-option>
+    <mat-option *ngFor="let XLeftMax of XLeftMaxs" [value]="XLeftMax">{{XLeftMax}}</mat-option>
+  </mat-select>
+</mat-form-field>
+
+<mat-form-field>
+<mat-select placeholder="XRightMax" (selectionChange)="getXRightValue($event.value); onChangeValue()" >
+<mat-option>None</mat-option>
+<mat-option *ngFor="let XRightMax of XRightMaxs" [value]="XRightMax">{{XRightMax}}</mat-option>
+</mat-select>
+</mat-form-field>

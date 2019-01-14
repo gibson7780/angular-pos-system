@@ -1,0 +1,55 @@
+    <form class="example-form maring15-padding20" #heroForm="ngForm"  [ngStyle]="{'width': width,'height': height}">
+        <div class="relative">
+            <mat-form-field class="example-full-width">
+              <input type="number" id="a" (keyup)="calculator($event.target.value,$event.target, $event.target.id)" [(ngModel)]="a" matInput placeholder="Please input value a" value=""
+               required name="a" #valueA="ngModel" >
+            </mat-form-field>
+              <div [hidden]="valueA.valid || valueA.pristine "
+                   class="alert alert-danger overflow">
+                <p>Value a is required</p>
+              </div>
+        </div>
+        <div class="relative">
+          <mat-form-field class="example-full-width">
+            <input type="number" id="b" (keyup)="calculator($event.target.value,$event.target, $event.target.id)"
+             [(ngModel)]="b" matInput placeholder="Please input value b"
+              required value="" name="b" #valueB="ngModel">
+          </mat-form-field>
+          <div [hidden]="valueB.valid || valueB.pristine "
+               class="alert alert-danger overflow">
+            <p>Value b is required</p>
+          </div>
+        </div>
+        <div class="relative">
+          <mat-form-field class="example-full-width">
+            <input type="number" id="c" (keyup)="calculator($event.target.value,$event.target, $event.target.id)" [(ngModel)]="c" matInput placeholder="Please input value c"
+             required value="" name="c" #valueC="ngModel">
+          </mat-form-field>
+          <div [hidden]="valueC.valid || valueC.pristine "
+               class="alert alert-danger overflow">
+            <p>Value c is required</p>
+          </div>
+        </div>
+
+    </form>
+  <!-- </mat-grid-tile> -->
+
+
+
+
+
+
+    <!-- <mat-grid-tile>
+      <form class="example-form">
+        <div class=" outstyle">
+		   			The result of ax^2 + bx + c =
+		   			<span id="result">{{total}}</span>
+		   			<span>.</span>
+		   	</div>
+
+      </form>
+    </mat-grid-tile> -->
+    <!-- <mat-grid-tile> -->
+    <form class="example-form" [ngStyle]="{'width': width}" (window:resize)="onResize()">
+      <app-d3-line-planning   [data]="d3Data" [total]="total" [resizeWidth]="resizeWidth" #useFnc (onChangeRa)="onChange($event)"></app-d3-line-planning>
+    </form>
