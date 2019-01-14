@@ -59,6 +59,7 @@ export class PurchaseComponent implements OnInit {
     const titleLabel = this.el.nativeElement.querySelectorAll('.mat-tab-label');
     titleLabel[1].addEventListener('click', () => {
       this.data.getPurchases().subscribe(data => {
+        // console.log(data);
         for (let i = 0; i < data.length; i++) {
           data[i].purchaseDate = data[i].purchaseDate.replace('T', ' ');
           data[i].purchaseDate = data[i].purchaseDate.replace('.000Z', '');

@@ -25,14 +25,20 @@
     <!-- [data]="pieData" -->
     <app-pie-chart  [data]="pieData" [pie]="pieDisplay"></app-pie-chart>
   </mat-tab>
-  <mat-tab label="熱門配方">
-    <p class="txtStyle">※配方利潤 = 配方售價 - 配方成本。</p>
-    <app-bar-chart [data]="barData" [bar]="barDisplay"></app-bar-chart>
-  </mat-tab>
   <mat-tab label="賺錢配方">
+    <p class="txtStyle">※配方利潤 = 配方售價 - 配方成本。</p>
+    <app-bar-chart [sellCountsBarData]="sellCountsBarData" [bar]="barDisplay" [channel]="channel2" ></app-bar-chart>
+<app-bar-chart [data]="barData" [bar]="barDisplay" [channel]="channel1"></app-bar-chart>
+    <!-- <app-bar-chart [data]="barData" [bar]="barDisplay" ></app-bar-chart>
+    <app-bar-chart [data]="sellCountsBarData" [sellbar]="barDisplay" ></app-bar-chart> -->
+  </mat-tab>
+  <mat-tab label="熱門配方">
 
   </mat-tab>
   <mat-tab label="購買配方">
 
   </mat-tab>
 </mat-tab-group>
+<!-- <app-bar-chart [data]="barData" [bar]="barDisplay" ></app-bar-chart> -->
+<!-- <app-bar-chart [data]="sellCountsBarData" [sellbar]="barDisplay" ></app-bar-chart>
+<app-bar-chart [data]="barData" [bar]="barDisplay" ></app-bar-chart> -->

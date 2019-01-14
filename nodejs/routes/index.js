@@ -2,7 +2,16 @@ var express = require('express');
 var router = express.Router();
 var pg = require('pg');
 var bodyParser = require('body-parser');
-
+var types = pg.types;
+types.setTypeParser(1114, function(stringValue) {
+return stringValue;
+});
+// types.setTypeParser(1114, function(stringValue) {
+//   var temp = new Date(stringValue);
+//   return new Date(Date.UTC(
+//       temp.getFullYear(), temp.getMonth(), temp.getHours(), temp.getMinutes(), temp.getSeconds(), temp.getMilliseconds())
+//   );
+// });
 var config = { 
 user:"postgres",
 database:"postgres",

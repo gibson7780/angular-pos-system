@@ -26,17 +26,21 @@ export class LineChartComponent implements OnInit {
           d3.select('.x').remove();
           d3.select('.y').remove();
           d3.select('.line').remove();
-          this.lineChart();
+          // setTimeout(() => {
+            this.lineChart();
+          // }, 1000);
 }
 @Input() set size(data) {
   console.log(data);
   this.width = data - 100;
-  // this.height = data.height; 
+  // this.height = data.height;
   setTimeout(() => {
   d3.select('.x').remove();
   d3.select('.y').remove();
   d3.select('.line').remove();
-  this.lineChart();
+  // setTimeout(() => {
+    this.lineChart();
+  // }, 1000);
   }, 200);
 }
 @Input() set temp(data) {
@@ -45,7 +49,9 @@ export class LineChartComponent implements OnInit {
   d3.select('.x').remove();
   d3.select('.y').remove();
   d3.select('.line').remove();
-  this.lineChart();
+  // setTimeout(() => {
+    this.lineChart();
+  // }, 1000);
 }
   constructor() { }
 
@@ -109,25 +115,39 @@ export class LineChartComponent implements OnInit {
         .call(yAxisCall);
 
     }
-
-    const line = d3.line().x(function(d) {
-          return d.x;
-        }).y(function(d) {
-          return d.y;
-        });
-        // console.log(this.data)
-    svg.append('path')
-      .attr('class', 'line')
-      .attr('d' , line(this.lineData))
-      .attr('y', 0)
-      .attr('transform', 'translate(' + [40, height - 20] + ')')
-      .style( 'stroke', '#f00')
-      .style('stroke-width', '6px')
-      .style( 'fill', 'none');
-
+    console.log(this.lineData.length);
+    if (this.lineData.length > 0) {
+      this.drawLine();
+    }
 
   }
 
+  drawLine() {
+    const height = 500;
+    const svg = d3.select('#lineSvg').attr('width', this.width).attr('height', height);
+
+      const line = d3.line().x(function(d) {
+        return d.x;
+      }).y(function(d) {
+        return d.y;
+      });
+      var path = svg.append('path')
+      .attr('class', 'line')
+      .attr('d' , line(this.lineData))
+      .attr('transform', 'translate(' + [40, height - 20] + ')')
+      .style('stroke', '#f00')
+      .style('stroke-width', '6px')
+      .style('fill', 'none');
+
+        var totalLength = path.node().getTotalLength();
+
+        path.attr("stroke-dasharray", totalLength + " " + totalLength)
+        .attr("stroke-dashoffset", totalLength)
+        .transition()
+        .duration(2000)
+        .attr("stroke-dashoffset", 0);
+
+  }
 
 
 

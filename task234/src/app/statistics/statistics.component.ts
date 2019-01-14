@@ -1,6 +1,7 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, OnInit, ElementRef, ɵConsole } from '@angular/core';
 import { DbService } from '../db.service';
 import { Observable } from 'rxjs';
+import * as d3 from 'd3';
 @Component({
   selector: 'app-statistics',
   templateUrl: './statistics.component.html',
@@ -35,14 +36,20 @@ export class StatisticsComponent implements OnInit {
   total: number;
   dbData: any = [];
   barData: any = [];
+  sellCountsBarData: any = [];
   pieData: any = [];
+  channel1 = 0;
+  channel2 = 0;
   constructor(private data: DbService, private el: ElementRef) { }
 
   ngOnInit() {
+
+
+
     // this.pieChart();
     this.barChart();
-
-
+    this.formulaSellBarChart();
+    // this.barChart();
 
     setTimeout(() => {
       const titleLabel = this.el.nativeElement.querySelectorAll('.mat-tab-label');
@@ -113,9 +120,30 @@ export class StatisticsComponent implements OnInit {
         });
         // console.log(barContents);
         this.barData = barContents;
+        this.channel1 = 1;
         // console.log(this.barData);
 
       });
+  }
+  formulaSellBarChart() {
+    this.data.getShipments().subscribe(data => {
+      const barContents = [];
+      const storeArr = [];
+      data.forEach(function(Item: any, Index: any) {
+        // console.log(storeArr.indexOf(Item.formulaName));
+        if (storeArr.indexOf(Item.formulaName) >= 0) {
+          barContents[storeArr.indexOf(Item.formulaName)][1] += Item.counts;
+          console.log(barContents);
+        } else {
+          storeArr.push(Item.formulaName);
+          barContents.push([Item.formulaName, Item.counts])
+          console.log(storeArr);
+        }
+        // barContents.push([Item.formulaName, Item.counts]);
+      });
+      this.sellCountsBarData = barContents;
+      this.channel2 = 2;
+    });
   }
   showUserChart(name) {
     console.log(name);

@@ -8,8 +8,8 @@ import * as d3 from 'd3';
 export class BarChartComponent implements OnInit {
   barTri = false;
   barData: any = [];
+  barSvgCH = 0;
   @Input() set bar(data) {
-
     if (data === true) {
       this.barTri = data;
         setTimeout(() => {
@@ -17,9 +17,37 @@ export class BarChartComponent implements OnInit {
         }, 1000);
     }
   }
+  // @Input() set sellbar(data) {
+
+  //   if (data === true) {
+  //     this.barTri = data;
+  //       setTimeout(() => {
+  //         this.barChart();
+  //       }, 1000);
+  //   }
+  // }
   @Input() set data(data) {
+    // this.barSvgCH = 1 ;
+    // console.log(this.barSvgCH);
     console.log(data);
     this.barData = data;
+    // setTimeout(() => {
+    //   this.barChart();
+    // }, 1000);
+
+  }
+  @Input() set sellCountsBarData(data) {
+    // this.barSvgCH = 2 ;
+    // console.log(this.barSvgCH);
+    console.log(data);
+    this.barData = data;
+  //   setTimeout(() => {
+  //     this.barChart();
+  //   }, 1000);
+
+  }
+  @Input() set channel(data) {
+    this.barSvgCH = data ;
 
   }
   constructor() { }
@@ -82,7 +110,7 @@ export class BarChartComponent implements OnInit {
       // 		return ordinalScale(d);
       // 	});
 
-    const chart = d3.select('.chart')
+    const chart = d3.select('.chart' + this.barSvgCH)
     	.attr("width", this.barData.length * 150)
     	.attr('height', 500);
 

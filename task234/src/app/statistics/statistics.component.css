@@ -10,3 +10,12 @@
   font-family: '微軟正黑體';
   font-weight: bold;
 }
+#line{
+  width: 700px;
+  margin: 20px 0;
+  height: 300px;
+  background: #eee;
+}
+button {
+  margin: 20px 0 0 20px;
+}
